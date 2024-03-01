@@ -46,19 +46,66 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label class="form-label">Name</label>
-                                <input type="text" name="nama_ruangan" id="nama_ruangan" class="form-control" />
-                                <span id="nama_ruangan_error" class="text-danger"></span>
+                                <label class="form-label">Kode Anggota</label>
+                                <input type="text" name="kd_anggota" id="kd_anggota" class="form-control" />
+                                <span id="kd_anggota_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Keterangan</label>
-                                <input type="text" name="keterangan" id="keterangan" class="form-control" />
-                                <span id="keterangan_error" class="text-danger"></span>
+                                <label class="form-label">Nama Anggota</label>
+                                <input type="text" name="nm_anggota" id="nm_anggota" class="form-control" />
+                                <span id="nm_anggota_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Kapasitas</label>
-                                    <input type="text" name="kapasitas" id="kapasitas" class="form-control" />
-                                    <span id="pass_error" class="text-danger"></span>
+                                <label class="form-label">Jenis Kelamin</label>
+                                <select class="form-select" id="jk" name="jk" aria-label="jk">
+                                    <option value="">Choose</option>
+                                    <option value="Laki-laki">Laki-laki</option>
+                                    <option value="Perempuan">Perempuan</option>
+                                </select>
+                                <span id="jk_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tempat Lahir</label>
+                                <input type="text" name="tp_lahir" id="tp_lahir" class="form-control" />
+                                <span id="tp_lahir_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tanggal Lahir</label>
+                                <input type="date" name="tg_lahir" id="tg_lahir" class="form-control" />
+                                <span id="tg_lahir_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Alamat</label>
+                                <input type="text" name="alamat" id="alamat" class="form-control" />
+                                <span id="alamat_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">No Hp</label>
+                                <input type="text" name="no_hp" id="no_hp" class="form-control" />
+                                <span id="ano_hp_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Jenis Anggota</label>
+                                <select class="form-select" id="jns_anggota" name="jns_anggota" aria-label="jns_anggota">
+                                    <option value="">Choose</option>
+                                    <option value="Member">Member</option>
+                                    <option value="Non Member">Non Member</option>
+                                </select>
+                                <span id="jk_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Status</label>
+                                <select class="form-select" id="status" name="status" aria-label="status">
+                                    <option value="">Choose</option>
+                                    <option value="active">Active</option>
+                                    <option value="inactive">In Active</option>
+                                </select>
+                                <span id="jk_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Jumlah Pinjam</label>
+                                    <input type="text" name="jml_pjm" id="jml_pjm" class="form-control" />
+                                    <span id="jml_pjm_error" class="text-danger"></span>
                                 </div>
                         </div>
                         <div class="modal-footer">
@@ -79,7 +126,7 @@
         showAll();
 
         $('#add_data').click(function(){
-            $('#dynamic_modal_title').text('Add Data User');
+            $('#dynamic_modal_title').text('Add Data');
             $('#sample_form')[0].reset();
             $('#action').val('Add');
             $('#action_button').text('Add');
@@ -92,17 +139,23 @@
             if($('#action').val() == "Add"){
                 var formData = {
                 '_token': '{{ csrf_token() }}',
-                'nama_ruangan' : $('#nama_ruangan').val(),
-                'keterangan' : $('#keterangan').val(),
-                'kapasitas' : $('#kapasitas').val()
+                'kd_anggota' : $('#kd_anggota').val(),
+                'nm_anggota' : $('#nm_anggota').val(),
+                'tp_lahir' : $('#tp_lahir').val(),
+                'tg_lahir' : $('#tg_lahir').val(),
+                'jk' : $('#jk').val(),
+                'alamat' : $('#alamat').val(),
+                'no_hp' : $('#no_hp').val(),
+                'jns_anggota' : $('#jns_anggota').val(),
+                'status' : $('#status').val(),
+                'jml_pjm' : $('#jml_pjm').val(),
                 }
 
                 $.ajax({
                     headers: {
-                        "Content-Type":"application/json",
-                        "Authorization": "Bearer {{ session('accessToken') }}"
+                        "Content-Type":"application/json"
                     },
-                    url:"{{ url('api/ruangans/create')}}",
+                    url:"{{ route('anggotas.store') }}",
                     method:"POST",
                     data: JSON.stringify(formData),
                     success:function(data){
@@ -119,18 +172,25 @@
             }else if($('#action').val() == "Update"){
                 var formData = {
                     '_token': '{{ csrf_token() }}',
-                    'nama_ruangan' : $('#nama_ruangan').val(),
-                    'keterangan' : $('#keterangan').val(),
-                    'kapasitas' : $('#kapasitas').val()
+                    'kd_anggota' : $('#kd_anggota').val(),
+                    'nm_anggota' : $('#nm_anggota').val(),
+                    'tp_lahir' : $('#tp_lahir').val(),
+                    'tg_lahir' : $('#tg_lahir').val(),
+                    'jk' : $('#jk').val(),
+                    'alamat' : $('#alamat').val(),
+                    'no_hp' : $('#no_hp').val(),
+                    'jns_anggota' : $('#jns_anggota').val(),
+                    'status' : $('#status').val(),
+                    'jml_pjm' : $('#jml_pjm').val(),
                 }
+
 
                 $.ajax({ 
                     headers: {
-                        "Content-Type":"application/json",
-                        "Authorization": "Bearer {{ session('accessToken') }}"
+                        "Content-Type":"application/json"
                     },
-                    url:"{{ url('api/ruangans/')}}/"+$('#id').val()+"/update",
-                    method:"POST",
+                    url:"{{ url('anggotas/')}}/"+$('#id').val(),
+                    method:"PUT",
                     data: JSON.stringify(formData),
                     success:function(data){
                         $('#action_button').attr('disabled', false);
@@ -209,15 +269,21 @@
         $.ajax({
             type: "GET",
             headers: {
-                "Content-Type":"application/json",
-                "Authorization": "Bearer {{ session('accessToken') }}"
+                "Content-Type":"application/json"
             },
-            url:"{{ url('api/ruangans')}}/"+id+"/show",
+            url:"{{ url('anggotas')}}/"+id,
             success: function(response) {
                 $('#id').val(response.id);
-                $('#nama_ruangan').val(response.nama_ruangan);
-                $('#keterangan').val(response.keterangan);
-                $('#kapasitas').val(response.kapasitas);
+                $('#kd_anggota').val(response.kd_anggota);
+                $('#nm_anggota').val(response.nm_anggota);
+                $('#tp_lahir').val(response.tp_lahir);
+                $('#tg_lahir').val(response.tg_lahir);
+                $('#jk').val(response.jk);
+                $('#alamat').val(response.alamat);
+                $('#no_hp').val(response.no_hp);
+                $('#jns_anggota').val(response.jns_anggota);
+                $('#status').val(response.status);
+                $('#jml_pjm').val(response.jml_pjm);
             },
             error: function(err) {
                 console.log(err);
@@ -229,17 +295,16 @@
         alert('Yakin untuk hapus data ?');
         $.ajax({
             headers: {
-                "Content-Type":"application/json",
-                "Authorization": "Bearer {{ session('accessToken') }}"
+                "Content-Type":"application/json"
             },
-            url:"{{ url('api/ruangans')}}/"+id+"/delete",
+            url:"{{ url('anggotas')}}/"+id,
             method:"DELETE",            
             data: JSON.stringify({
                     '_token': '{{ csrf_token() }}'
                 }),
             success:function(data){
                 $('#action_button').attr('disabled', false);
-                $('#message').html('<div class="alert alert-success">'+data+'</div>');
+                $('#message').html('<div class="alert alert-success">'+data.message+'</div>');
                 $('#action_modal').modal('hide');
                 $('#sample_data').DataTable().destroy();
                 showAll();

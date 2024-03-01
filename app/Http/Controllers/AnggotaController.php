@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Anggota;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class AnggotaController extends Controller
 {
@@ -33,15 +34,46 @@ class AnggotaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'kd_anggota' => 'required',
+            'nm_anggota' => 'required',
+            'jk' => 'required',
+            'tp_lahir' => 'required',
+            'tg_lahir' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+            'jns_anggota' => 'required',
+            'status' => 'required',
+            'jml_pjm' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $anggota = Anggota::create([
+            'kd_anggota' => $request->kd_anggota,
+            'nm_anggota' => $request->nm_anggota,
+            'jk' => $request->jk,
+            'tp_lahir' => $request->tp_lahir,
+            'tg_lahir' => $request->tg_lahir,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'jns_anggota' => $request->jns_anggota,
+            'status' => $request->status,
+            'jml_pjm' => $request->jml_pjm,
+        ]);
+        return response()->json([
+            'message' => 'Anggota successfully created',
+            'anggota' => $anggota
+        ], 201);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $anggotas = Anggota::find($id);
+        return response()->json($anggotas);
     }
 
     /**
@@ -55,16 +87,50 @@ class AnggotaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'kd_anggota' => 'required',
+            'nm_anggota' => 'required',
+            'jk' => 'required',
+            'tp_lahir' => 'required',
+            'tg_lahir' => 'required',
+            'alamat' => 'required',
+            'no_hp' => 'required',
+            'jns_anggota' => 'required',
+            'status' => 'required',
+            'jml_pjm' => 'required',
+        ]);
+        if($validator->fails()){
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+        $anggota = Anggota::where('id', $id)->update([
+            'kd_anggota' => $request->kd_anggota,
+            'nm_anggota' => $request->nm_anggota,
+            'jk' => $request->jk,
+            'tp_lahir' => $request->tp_lahir,
+            'tg_lahir' => $request->tg_lahir,
+            'alamat' => $request->alamat,
+            'no_hp' => $request->no_hp,
+            'jns_anggota' => $request->jns_anggota,
+            'status' => $request->status,
+            'jml_pjm' => $request->jml_pjm,
+        ]);
+        return response()->json([
+            'message' => 'Anggota successfully updated',
+            'anggota' => $anggota
+        ], 201);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $anggota = Anggota::find($id);
+        $anggota->delete();
+        return response()->json([
+            'message' => 'Anggota successfully deleted',
+        ], 201);
     }
 }
