@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
   
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\RuangController;
+use App\Http\Controllers\AnggotaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +30,8 @@ Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 // Route::get('/users', [UserController::class, 'index'])->name('users');
 Route::resource('users', UserController::class); //users.index, users.create, users.edit, users.update, users.destroy
-Route::get('ruangans', [RuangController::class, 'indexPage'])->name('ruangans.page');
+Route::resource('anggotas', AnggotaController::class); //users.index, users.create, users.edit, users.update, users.destroy
+Route::get('anggota/showall', [AnggotaController::class, 'showAll'])->name('anggota.all');
+
+Route::resource('koleksis', KoleksiController::class); //users.index, users.create, users.edit, users.update, users.destroy
+Route::get('koleksi/showall', [KoleksiController::class, 'showAll'])->name('koleksi.all');
