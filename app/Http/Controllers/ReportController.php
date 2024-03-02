@@ -6,6 +6,7 @@ use App\Models\TransaksiPinjam;
 use App\Models\Koleksi;
 use App\Models\Anggota;
 use Illuminate\Http\Request;
+use PDF;
 
 class ReportController extends Controller
 {
@@ -35,8 +36,12 @@ class ReportController extends Controller
     public function store(Request $request)
     {
 
-        $data = TransaksiKembali::whereBetween('tg_pinjam', [$request->tg_awal, $request->tg_akhir])->get();
-        return view('report/index', compact('data'));
+        $data = TransaksiKembali::with('anggota', 'pengguna')->whereBetween('tg_pinjam', [$request->tg_awal, $request->tg_akhir])->get()->toArray();
+        // return view('report/index', compact('data'));
+
+        $pdf = PDF::loadView('report/pdf', compact('data'));
+     
+        return $pdf->stream('report.pdf');
     
     }
 
