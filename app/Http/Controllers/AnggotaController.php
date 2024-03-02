@@ -79,9 +79,9 @@ class AnggotaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Anggota $anggota)
     {
-        //
+        return view('anggota.edit', compact('anggotas'));
     }
 
     /**

@@ -55,7 +55,7 @@
     
 <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-        <a class="navbar-brand" href="/">SIMARU</a>
+        <a class="navbar-brand" href="/">Perpustakaan</a>
         
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -79,10 +79,16 @@
                             <a class="nav-link" href="{{ route('anggotas.index') }}">Anggota</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('koleksis.index') }}">Koleksi</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('pinjams.index') }}">Transaksi Pinjam</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('kembalis.index') }}">Transaksi Kembali</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('reports.index') }}">Report</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('logout') }}">Logout</a>

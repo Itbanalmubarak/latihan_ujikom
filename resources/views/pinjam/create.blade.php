@@ -6,7 +6,7 @@
       <div class="row justify-content-center">
           <div class="col-md-10">
               <div class="card">
-                  <div class="card-header">Add User</div>
+                  <div class="card-header">Add Transaksi Pinjam</div>
                   <div class="card-body">
   
                       <form action="{{ route('pinjams.store') }}" method="POST">
@@ -63,7 +63,7 @@
                           </div>
 
                           <div class="form-group row mt-3">
-                              <label for="tg_bts_kembali" class="col-md-4 col-form-label text-right">Tanggal Pinjam</label>
+                              <label for="tg_bts_kembali" class="col-md-4 col-form-label text-right">Tanggal Kembali</label>
                               <div class="col-md-6">
                                   <input type="date" id="tg_bts_kembali" class="form-control" name="tg_bts_kembali" required >
                                   @if ($errors->has('tg_bts_kembali'))

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AnggotaController;
+use App\Http\Controllers\KoleksiController;
 use App\Http\Controllers\TrxPinjamController;
 use App\Http\Controllers\TrxKembaliController;
 use App\Http\Controllers\ReportController;

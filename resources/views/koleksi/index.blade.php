@@ -7,7 +7,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col col-sm-9">Master Anggota</div>
+                    <div class="col col-sm-9">Master Koleksi</div>
                     <div class="col col-sm-3">
                         <button type="button" id="add_data" class="btn btn-success btn-sm float-end">Add</button>
                     </div>
@@ -19,15 +19,17 @@
                         <thead>
                             <tr>
                                 <th>Kode Koleksi</th>
-                                <th>Nama Anggota</th>
-                                <th>Tempat Lahir Anggota</th>
-                                <th>Tanggal Lahir Anggota</th>
-                                <th>Jenis Kelamin</th>
-                                <th>Alamat</th>
-                                <th>No Hp</th>
-                                <th>Jenis Anggota</th>
+                                <th>Judul</th>
+                                <th>Jenis Bahan Pustaka</th>
+                                <th>Jenis Koleksi</th>
+                                <th>Jenis Media</th>
+                                <th>Pengarang</th>
+                                <th>Penerbit</th>
+                                <th>Tahun</th>
+                                <th>Cetakan</th>
+                                <th>Edisi</th>
                                 <th>Status</th>
-                                <th>Jumlah Pinjam</th>
+                                
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -46,52 +48,72 @@
                         </div>
                         <div class="modal-body">
                             <div class="mb-3">
-                                <label class="form-label">Kode Anggota</label>
-                                <input type="text" name="kd_anggota" id="kd_anggota" class="form-control" />
-                                <span id="kd_anggota_error" class="text-danger"></span>
+                                <label class="form-label">Kode Koleksi</label>
+                                <input type="text" name="kd_koleksi" id="kd_koleksi" class="form-control" />
+                                <span id="kd_koleksi_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Nama Anggota</label>
-                                <input type="text" name="nm_anggota" id="nm_anggota" class="form-control" />
-                                <span id="nm_anggota_error" class="text-danger"></span>
+                                <label class="form-label">Judul</label>
+                                <input type="text" name="judul" id="judul" class="form-control" />
+                                <span id="judul_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Jenis Kelamin</label>
-                                <select class="form-select" id="jk" name="jk" aria-label="jk">
+                                <label class="form-label">Jenis Bahan Pustaka</label>
+                                <select class="form-select" id="jns_bhn_pustaka" name="jns_bhn_pustaka" aria-label="jns_bhn_pustaka">
                                     <option value="">Choose</option>
-                                    <option value="Laki-laki">Laki-laki</option>
-                                    <option value="Perempuan">Perempuan</option>
+                                    <option value="Karya Cetak">Karya Cetak</option>
+                                    <option value="Karya Non-Cetak">Karya Non-Cetak</option>
                                 </select>
-                                <span id="jk_error" class="text-danger"></span>
+                                <span id="jns_bhn_pustaka_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
-                                <label class="form-label">Tempat Lahir</label>
-                                <input type="text" name="tp_lahir" id="tp_lahir" class="form-control" />
-                                <span id="tp_lahir_error" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Tanggal Lahir</label>
-                                <input type="date" name="tg_lahir" id="tg_lahir" class="form-control" />
-                                <span id="tg_lahir_error" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Alamat</label>
-                                <input type="text" name="alamat" id="alamat" class="form-control" />
-                                <span id="alamat_error" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">No Hp</label>
-                                <input type="text" name="no_hp" id="no_hp" class="form-control" />
-                                <span id="ano_hp_error" class="text-danger"></span>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Jenis Anggota</label>
-                                <select class="form-select" id="jns_anggota" name="jns_anggota" aria-label="jns_anggota">
+                                <label class="form-label">Jenis Koleksi</label>
+                                <select class="form-select" id="jns_koleksi" name="jns_koleksi" aria-label="jns_koleksi">
                                     <option value="">Choose</option>
-                                    <option value="Member">Member</option>
-                                    <option value="Non Member">Non Member</option>
+                                    <option value="Novel">Novel</option>
+                                    <option value="Majalah">Majalah</option>
+                                    <option value="Edukasi">Edukasi</option>
+                                    <option value="Agama">Agama</option>
                                 </select>
-                                <span id="jk_error" class="text-danger"></span>
+                                <span id="jns_koleksi_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Jenis Media</label>
+                                <select class="form-select" id="jns_media" name="jns_media" aria-label="jns_media">
+                                    <option value="">Choose</option>
+                                    <option value="Buku">Buku</option>
+                                    <option value="Radio">Radio</option>
+                                </select>
+                                <span id="jns_media_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Pengarang</label>
+                                <input type="text" name="pengarang" id="pengarang" class="form-control" />
+                                <span id="pengarang_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Penerbit</label>
+                                <input type="text" name="penerbit" id="penerbit" class="form-control" />
+                                <span id="penerbit_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Tahun</label>
+                                <input type="text" name="tahun" id="tahun" class="form-control" />
+                                <span id="tahun_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Cetakan</label>
+                                <input type="text" name="cetakan" id="cetakan" class="form-control" />
+                                <span id="cetakan_error" class="text-danger"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Edisis</label>
+                                <select class="form-select" id="edisi" name="edisi" aria-label="edisi">
+                                    <option value="">Choose</option>
+                                    <option value="Baru">Baru</option>
+                                    <option value="Lama">Lama</option>
+                                </select>
+                                <span id="edisi_error" class="text-danger"></span>
                             </div>
                             <div class="mb-3">
                                 <label class="form-label">Status</label>
@@ -102,12 +124,7 @@
                                 </select>
                                 <span id="jk_error" class="text-danger"></span>
                             </div>
-                            <div class="mb-3">
-                                <label class="form-label">Jumlah Pinjam</label>
-                                    <input type="text" name="jml_pjm" id="jml_pjm" class="form-control" />
-                                    <span id="jml_pjm_error" class="text-danger"></span>
-                                </div>
-                        </div>
+
                         <div class="modal-footer">
                             <input type="hidden" name="id" id="id" />
                             <input type="hidden" name="action" id="action" value="Add" />
@@ -139,23 +156,25 @@
             if($('#action').val() == "Add"){
                 var formData = {
                 '_token': '{{ csrf_token() }}',
-                'kd_anggota' : $('#kd_anggota').val(),
-                'nm_anggota' : $('#nm_anggota').val(),
-                'tp_lahir' : $('#tp_lahir').val(),
-                'tg_lahir' : $('#tg_lahir').val(),
-                'jk' : $('#jk').val(),
-                'alamat' : $('#alamat').val(),
-                'no_hp' : $('#no_hp').val(),
-                'jns_anggota' : $('#jns_anggota').val(),
+                'kd_koleksi' : $('#kd_koleksi').val(),
+                'judul' : $('#judul').val(),
+                'jns_bhn_pustaka' : $('#jns_bhn_pustaka').val(),
+                'jns_koleksi' : $('#jns_koleksi').val(),
+                'jns_media' : $('#jns_media').val(),
+                'pengarang' : $('#pengarang').val(),
+                'penerbit' : $('#penerbit').val(),
+                'tahun' : $('#tahun').val(),
+                'cetakan' : $('#cetakan').val(),
+                'edisi' : $('#edisi').val(),
                 'status' : $('#status').val(),
-                'jml_pjm' : $('#jml_pjm').val(),
+
                 }
 
                 $.ajax({
                     headers: {
                         "Content-Type":"application/json"
                     },
-                    url:"{{ route('anggotas.store') }}",
+                    url:"{{ route('koleksis.store') }}",
                     method:"POST",
                     data: JSON.stringify(formData),
                     success:function(data){
@@ -172,16 +191,17 @@
             }else if($('#action').val() == "Update"){
                 var formData = {
                     '_token': '{{ csrf_token() }}',
-                    'kd_anggota' : $('#kd_anggota').val(),
-                    'nm_anggota' : $('#nm_anggota').val(),
-                    'tp_lahir' : $('#tp_lahir').val(),
-                    'tg_lahir' : $('#tg_lahir').val(),
-                    'jk' : $('#jk').val(),
-                    'alamat' : $('#alamat').val(),
-                    'no_hp' : $('#no_hp').val(),
-                    'jns_anggota' : $('#jns_anggota').val(),
+                    'kd_koleksi' : $('#kd_koleksi').val(),
+                    'judul' : $('#judul').val(),
+                    'jns_bhn_pustaka' : $('#jns_bhn_pustaka').val(),
+                    'jns_koleksi' : $('#jns_koleksi').val(),
+                    'jns_media' : $('#jns_media').val(),
+                    'pengarang' : $('#pengarang').val(),
+                    'penerbit' : $('#penerbit').val(),
+                    'tahun' : $('#tahun').val(),
+                    'cetakan' : $('#cetakan').val(),
+                    'edisi' : $('#edisi').val(),
                     'status' : $('#status').val(),
-                    'jml_pjm' : $('#jml_pjm').val(),
                 }
 
 
@@ -189,7 +209,7 @@
                     headers: {
                         "Content-Type":"application/json"
                     },
-                    url:"{{ url('anggotas/')}}/"+$('#id').val(),
+                    url:"{{ url('koleksis/')}}/"+$('#id').val(),
                     method:"PUT",
                     data: JSON.stringify(formData),
                     success:function(data){
@@ -213,23 +233,24 @@
             headers: {
                 "Content-Type":"application/json"
             },
-            url:"{{ route('anggota.all') }}",
+            url:"{{ route('koleksi.all') }}",
             success: function(response) {
             // console.log(response);
                 var json = response;
                 var dataSet=[];
                 for (var i = 0; i < json.length; i++) {
                     var sub_array = {
-                        'kd_anggota' : json[i].kd_anggota,
-                        'nm_anggota' : json[i].nm_anggota,
-                        'tp_lahir' : json[i].tp_lahir,
-                        'tg_lahir' : json[i].tg_lahir,
-                        'jk' : json[i].jk,
-                        'alamat' : json[i].alamat,
-                        'no_hp' : json[i].no_hp,
-                        'jns_anggota' : json[i].jns_anggota,
+                        'kd_koleksi' : json[i].kd_koleksi,
+                        'judul' : json[i].judul,
+                        'jns_bhn_pustaka' : json[i].jns_bhn_pustaka,
+                        'jns_koleksi' : json[i].jns_koleksi,
+                        'jns_media' : json[i].jns_media,
+                        'pengarang' : json[i].pengarang,
+                        'penerbit' : json[i].penerbit,
+                        'tahun' : json[i].tahun,
+                        'cetakan' : json[i].cetakan,
+                        'edisi' : json[i].edisi,
                         'status' : json[i].status,
-                        'jml_pjm' : json[i].jml_pjm,
                         'action' : '<button onclick="showOne('+json[i].id+')" class="btn btn-sm btn-warning">Edit</button>'+
                         '<button onclick="deleteOne('+json[i].id+')" class="btn btn-sm btn-danger">Delete</button>'
                     };
@@ -238,16 +259,17 @@
                 $('#sample_data').DataTable({
                     data: dataSet,
                     columns : [
-                        { data : "kd_anggota" },
-                        { data : "nm_anggota" },
-                        { data : "tp_lahir" },
-                        { data : "tg_lahir" },
-                        { data : "jk" },
-                        { data : "alamat" },
-                        { data : "no_hp" },
-                        { data : "jns_anggota" },
+                        { data : "kd_koleksi" },
+                        { data : "judul" },
+                        { data : "jns_bhn_pustaka" },
+                        { data : "jns_koleksi" },
+                        { data : "jns_media" },
+                        { data : "pengarang" },
+                        { data : "penerbit" },
+                        { data : "tahun" },
+                        { data : "cetakan" },
+                        { data : "edisi" },
                         { data : "status" },
-                        { data : "jml_pjm" },
                         { data : "action" }
                     ]
                 });
@@ -271,19 +293,21 @@
             headers: {
                 "Content-Type":"application/json"
             },
-            url:"{{ url('anggotas')}}/"+id,
+            url:"{{ url('koleksis')}}/"+id,
             success: function(response) {
                 $('#id').val(response.id);
-                $('#kd_anggota').val(response.kd_anggota);
-                $('#nm_anggota').val(response.nm_anggota);
-                $('#tp_lahir').val(response.tp_lahir);
-                $('#tg_lahir').val(response.tg_lahir);
-                $('#jk').val(response.jk);
-                $('#alamat').val(response.alamat);
-                $('#no_hp').val(response.no_hp);
-                $('#jns_anggota').val(response.jns_anggota);
+                $('#kd_koleksi').val(response.kd_koleksi);
+                $('#judul').val(response.judul);
+                $('#jns_bhn_pustaka').val(response.jns_bhn_pustaka);
+                $('#jns_koleksi').val(response.jns_koleksi);
+                $('#jns_media').val(response.jns_media);
+                $('#pengarang').val(response.pengarang);
+                $('#penerbit').val(response.penerbit);
+                $('#tahun').val(response.tahun);
+                $('#cetakan').val(response.cetakan);
+                $('#edisi').val(response.edisi);
                 $('#status').val(response.status);
-                $('#jml_pjm').val(response.jml_pjm);
+                
             },
             error: function(err) {
                 console.log(err);
@@ -297,7 +321,7 @@
             headers: {
                 "Content-Type":"application/json"
             },
-            url:"{{ url('anggotas')}}/"+id,
+            url:"{{ url('koleksis')}}/"+id,
             method:"DELETE",            
             data: JSON.stringify({
                     '_token': '{{ csrf_token() }}'

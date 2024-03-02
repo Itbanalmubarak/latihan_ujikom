@@ -92,9 +92,39 @@ class TrxKembaliController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, TransaksiKembali $kembali)
     {
-        //
+        $request->validate([
+            'no_transaksi_pinjam' => 'required',
+            'no_transaksi_kembali' => 'required',
+            'kd_anggota' => 'required',
+            'tg_pinjam' => 'required',
+            'tg_kembali' => 'required',
+            'kd_koleksi' => 'required',
+            'judul' => 'required',
+            'jns_bhn_pustaka' => 'required',
+            'jns_koleksi' => 'required',
+            'jns_media' => 'required',
+            'denda' => 'required',
+            'ket' => 'required',
+        ]);
+
+        $$kembali = TransaksiKembali::where('id', $id)->update([
+            'no_transaksi_pinjam' => $request->no_transaksi_pinjam,
+            'no_transaksi_kembali' => $request->no_transaksi_kembali,
+            'kd_anggota' => $request->kd_anggota,
+            'tg_pinjam' => $request->tg_pinjam,
+            'tg_kembali' => $request->tg_kembali,
+            'kd_koleksi' => $request->kd_koleksi,
+            'judul' => $request->judul,
+            'jns_bhn_pustaka' => $request->jns_bhn_pustaka,
+            'jns_koleksi' => $request->jns_koleksi,
+            'jns_media' => $request->jns_media,
+            'denda' => $request->denda,
+            'ket' => $request->ket,
+        ]);
+
+        return redirect()->route('kembalis.index')->withSuccess('Great! You have Successfully updated transaksi');
     }
 
     /**
