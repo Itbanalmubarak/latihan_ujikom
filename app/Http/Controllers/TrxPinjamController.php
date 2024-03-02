@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\TransaksiPinjam;
 use App\Models\Koleksi;
+use App\Models\Anggota;
 use Illuminate\Http\Request;
 use Hash;
 
@@ -10,12 +11,20 @@ class TrxPinjamController extends Controller
 {
     public function index(){
         $pinjams = TransaksiPinjam::All();
-
         return view('pinjam/index', compact('pinjams'));
     }
 
     public function create(){
-        return view('pinjam/create');
+
+        $koleksis = Koleksi::All();
+        $anggotas = Anggota::All();
+        return view('pinjam/create', compact('koleksis', 'anggotas'));
+    }
+
+    public function show($kd_koleksi)
+    {
+        $koleksi = Koleksi::where('kd_koleksi', $kd_koleksi)->first();
+        return response()->json($koleksi);
     }
 
     public function store(Request $request)
@@ -86,7 +95,7 @@ class TrxPinjamController extends Controller
 
     public function destroy(TransaksiPinjam $pinjam)
     {
-        $user->delete();
+        $pinjam->delete();
         return redirect()->route('pinjams.index')->with('success','Great! You have Successfully deleted transaksi');
     }
 
