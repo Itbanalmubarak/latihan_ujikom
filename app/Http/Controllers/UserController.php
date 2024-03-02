@@ -37,7 +37,7 @@ class UserController extends Controller
             'hak_akses' =>$data['hak_akses']
         ]);
          
-        return redirect()->route('users.index')->withSuccess('Great! You have Successfully loggedin');
+        return redirect()->route('users.index')->withSuccess('Great! You have Successfully created new pengguna');
     }
 
     public function edit(User $user)
@@ -60,13 +60,13 @@ class UserController extends Controller
         if(!empty($request->password)) $user->password = Hash::make($request->password);
         $user->save();
 
-        return redirect()->route('users.index')->withSuccess('Great! You have Successfully loggedin');
+        return redirect()->route('users.index')->withSuccess('Great! You have Successfully updated pengguna');
     }
 
     public function destroy(User $user)
     {
         $user->delete();
-        return redirect()->route('users.index')->with('success','user has been deleted successfully');
+        return redirect()->route('users.index')->with('success','Great! You have Successfully deleted pengguna');
     }
 
 }

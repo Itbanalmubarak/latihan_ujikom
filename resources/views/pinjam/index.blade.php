@@ -10,38 +10,42 @@
                         {{ session('success') }}
                     </div>
                 @endif
-                <div class="card-header">{{ __('Master Pengguna') }}</div>
+                <div class="card-header">{{ __('Transaksi Pinjam') }}</div>
   
                 <div class="card-body">
-                    <a href="{{ route('users.create') }}" class="btn btn-sm btn-secondary">
-                        Tambah Pengguna
+                    <a href="{{ route('pinjams.create') }}" class="btn btn-sm btn-secondary">
+                        Tambah Pinjam
                     </a>
                     <table class="table" id="sample_data">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Nama Anggota</th>
+                                <th scope="col">Tanggal Pinjam</th>
+                                <th scope="col">Tanggal Batas Kembali</th>
+                                <th scope="col">Judul Buku</th>
+                                <th scope="col">Jenis Media</th>
                                 <th scope="col">Nama Pengguna</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Hak Akses</th>
-                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php $no = 0; ?>
-                            @foreach($users as $row)
+                            @foreach($pinjams as $row)
                             <?php $no++ ?>
                             <tr>
                                 <th scope="row">{{ $no }}</th>
-                                <td>{{$row->nm_pengguna}}</td>
-                                <td>{{$row->email}}</td>
-                                <td>{{$row->hak_akses}}</td>
-                                <td>{{$row->status}}</td>
+                                <td>{{$row->anggota->nm_anggota}}</td>
+                                <td>{{$row->tg_pinjam}}</td>
+                                <td>{{$row->tg_bts_kembali}}</td>
+                                <td>{{$row->judul}}</td>
+                                <td>{{$row->jns_media}}</td>
+                                <td>{{$row->pengguna->nm_pengguna}}</td>
                                 <td> 
-                                    <a href="{{ route('users.edit', $row->id) }}" class="btn btn-sm btn-warning">
+                                    <a href="{{ route('pinjams.edit', $row->id) }}" class="btn btn-sm btn-warning">
                                         Edit
                                     </a>
-                                    <form action="{{ route('users.destroy',$row->id) }}" method="POST"
+                                    <form action="{{ route('pinjams.destroy',$row->id) }}" method="POST"
                                     style="display: inline" onsubmit="return confirm('Do you really want to delete {{ $row->name }}?');">
                                         @csrf
                                         @method('DELETE')
