@@ -42,3 +42,4 @@ Route::get('koleksi/showall', [KoleksiController::class, 'showAll'])->name('kole
 Route::resource('pinjams', TrxPinjamController::class); //users.index, users.create, users.edit, users.update, users.destroy
 Route::resource('kembalis', TrxKembaliController::class); //users.index, users.create, users.edit, users.update, users.destroy
 Route::resource('reports', ReportController::class); //users.index, users.create, users.edit, users.update, users.destroy
+Route::post('/report/pdf', 'ReportController@generatePDF')->name('report.pdf');

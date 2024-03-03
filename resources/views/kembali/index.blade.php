@@ -19,7 +19,7 @@
                     <table class="table" id="sample_data">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
+                                <th scope="col">No</th>
                                 <th scope="col">NO TRX KEMBALI</th>
                                 <th scope="col">NO TRX PINJAM</th>
                                 <th scope="col">Nama Anggota</th>

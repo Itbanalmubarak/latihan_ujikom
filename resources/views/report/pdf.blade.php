@@ -37,7 +37,7 @@
                 <td>{{ $row['tg_kembali'] }}</td>
                 <td>{{ $row['judul'] }}</td>
                 <td>{{ $row['denda'] }}</td>
-                <td>{{ $row['pengguna']['nm_pengguna'] }}</td>
+                <td>{{ $row['pengguna']['nm_anggota'] }}</td>
             </tr>
             @endforeach
         @else

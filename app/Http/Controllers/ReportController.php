@@ -7,7 +7,7 @@ use App\Models\Koleksi;
 use App\Models\Anggota;
 use Illuminate\Http\Request;
 use PDF;
-
+use TCPDF;
 class ReportController extends Controller
 {
     /**
@@ -15,8 +15,12 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $data = [];
-        return view('report/index', compact('data'));
+        // $data = [];
+        // return view('report/index', compact('data'));
+
+        // return view('report/index');
+        $data = TransaksiKembali::all();
+    return view('report/index', compact('data'));
     }
 
     /**
@@ -24,10 +28,10 @@ class ReportController extends Controller
      */
     public function create()
     {
-        $pinjams = TransaksiPinjam::All();
-        $koleksis = Koleksi::All();
-        $anggotas = Anggota::All();
-        return view('kembali/create', compact('koleksis', 'anggotas', 'pinjams'));
+        // $pinjams = TransaksiPinjam::All();
+        // $koleksis = Koleksi::All();
+        // $anggotas = Anggota::All();
+        // return view('kembali/create', compact('koleksis', 'anggotas', 'pinjams'));
     }
 
     /**
@@ -36,12 +40,12 @@ class ReportController extends Controller
     public function store(Request $request)
     {
 
-        $data = TransaksiKembali::with('anggota', 'pengguna')->whereBetween('tg_pinjam', [$request->tg_awal, $request->tg_akhir])->get()->toArray();
-        // return view('report/index', compact('data'));
+        // $data = TransaksiKembali::with('anggota', 'pengguna')->whereBetween('tg_pinjam', [$request->tg_awal, $request->tg_akhir])->get()->toArray();
+        // // return view('report/index', compact('data'));
 
-        $pdf = PDF::loadView('report/pdf', compact('data'));
+        // $pdf = PDF::loadView('report/pdf', compact('data'));
      
-        return $pdf->stream('report.pdf');
+        // return $pdf->stream('report.pdf');
     
     }
 
@@ -50,8 +54,8 @@ class ReportController extends Controller
      */
     public function show($trxPinjam)
     {
-        $pinjam = TransaksiPinjam::where('no_transaksi_pinjam', $trxPinjam)->first();
-        return response()->json($pinjam);
+        // $pinjam = TransaksiPinjam::where('no_transaksi_pinjam', $trxPinjam)->first();
+        // return response()->json($pinjam);
     }
 
     /**
@@ -59,7 +63,7 @@ class ReportController extends Controller
      */
     public function edit(TransaksiKembali $kembalis)
     {
-        return view('kembali.edit', compact('kembalis'));
+        // return view('kembali.edit', compact('kembalis'));
     }
 
     /**
@@ -75,7 +79,28 @@ class ReportController extends Controller
      */
     public function destroy(TransaksiKembali $kembali)
     {
-        $kembali->delete();
-        return redirect()->route('kembalis.index')->with('success','Great! You have Successfully deleted transaksi');
+        // $kembali->delete();
+        // return redirect()->route('kembalis.index')->with('success','Great! You have Successfully deleted transaksi');
     }
+    public function generatePDF(Request $request)
+{
+    $tg_awal = $request->input('tg_awal');
+    $tg_akhir = $request->input('tg_akhir');
+
+    // Proses filter data dan pengambilan data dari database
+
+    $pdf = new TCPDF();
+    $pdf->SetMargins(15, 15, 15);
+    $pdf->AddPage();
+
+    // Tambahkan konten PDF di sini, misalnya tabel dengan data yang diambil dari database
+
+    $pdf->Output('report.pdf', 'S');
+    
+    // Return the PDF as response
+    return response($pdf->Output('report.pdf', 'S'), 200, [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'inline; filename="report.pdf"'
+    ]);
+}
 }
